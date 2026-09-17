@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGenie | Your Wish. Your Trip.</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🧞‍♀️ TravelGenie
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#explore">Explore</a>
+        </nav>
+
+        <button class="nav-btn" id="startJourney">
+            Start Your Journey ✨
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero" id="home">
+
+            <div class="animated-bg">
+
+                <div class="sun"></div>
+
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+
+                <div class="mountain mountain-1"></div>
+                <div class="mountain mountain-2"></div>
+                <div class="mountain mountain-3"></div>
+
+                <div class="birds">
+                    ︵ ︵　︵
+                </div>
+
+                <div class="sparkle sparkle-1">✦</div>
+                <div class="sparkle sparkle-2">✧</div>
+                <div class="sparkle sparkle-3">✦</div>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    ✨ EXPLORE INDIA ✨
+                </p>
+
+                <h1>
+                    Where do you<br>
+                    want to <span>go?</span>
+                </h1>
+
+                <p class="subtitle">
+                    Tell us your vibe, your time and your dream.
+                    <br>
+                    TravelGenie will find the perfect destination for you.
+                </p>
+
+                <button class="explore-btn" id="exploreButton">
+                    Explore by Vibe ✨
+                </button>
+
+            </div>
+            <div class="places-section" id="placesSection" style="display:none;">
+                <h2>Places in <span id="placesCityName"></span></h2>
+                <div class="places-container" id="placesContainer"></div>
+                <button class="back-btn" id="backButton">Back to Vibes</button>
+            </div>
+
+
+            <div class="floating-card">
+
+                <span class="bag">🧳</span>
+
+                <div>
+                    <strong>Your next adventure</strong>
+                    <small>is waiting...</small>
+                </div>
+
+            </div>
+
+
+            <div class="scroll-down">
+                <span>Scroll to explore</span>
+                <div>↓</div>
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EXPLORE ================= -->
+
+        <section class="explore-section" id="explore">
+
+            <p class="section-label">
+                FIND YOUR VIBE
+            </p>
+
+            <h2>
+                How do you want<br>
+                to <span>travel?</span>
+            </h2>
+
+
+            <!-- ================= VIBE CARDS ================= -->
+
+            <div class="vibe-container">
+
+                <div class="vibe-card" data-vibe="aesthetic">
+
+                    <div class="vibe-icon">
+                        🌸
+                    </div>
+
+                    <h3>
+                        Pretty + Aesthetic
+                    </h3>
+
+                    <p>
+                        Palaces, colours & dreamy places
+                    </p>
+
+                </div>
+
+
+                <div class="vibe-card" data-vibe="mountains">
+
+                    <div class="vibe-icon">
+                        🏔️
+                    </div>
+
+                    <h3>
+                        Mountains + Chilling
+                    </h3>
+
+                    <p>
+                        Cold weather, hills & peaceful views
+                    </p>
+
+                </div>
+
+
+                <div class="vibe-card" data-vibe="beach">
+
+                    <div class="vibe-icon">
+                        🌊
+                    </div>
+
+                    <h3>
+                        Beach + Fun
+                    </h3>
+
+                    <p>
+                        Sun, waves & unforgettable moments
+                    </p>
+
+                </div>
+
+
+                <div class="vibe-card" data-vibe="heritage">
+
+                    <div class="vibe-icon">
+                        🕌
+                    </div>
+
+                    <h3>
+                        History + Culture
+                    </h3>
+
+                    <p>
+                        Stories, forts & Indian heritage
+                    </p>
+
+                </div>
+
+
+                <div class="vibe-card" data-vibe="different">
+
+                    <div class="vibe-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        Something Different
+                    </h3>
+
+                    <p>
+                        Unique places beyond the usual
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= DESTINATIONS ================= -->
+
+            <div class="destination-section" id="destinationSection">
+
+                <div class="destination-heading">
+
+                    <p class="section-label">
+                        YOUR VIBE MATCHES
+                    </p>
+
+                    <h2 id="destinationTitle">
+                        Choose a vibe above ✨
+                    </h2>
+
+                    <p id="destinationSubtitle">
+                        Click on a vibe to discover places made for you.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="destination-container"
+                    id="destinationContainer">
+                </div>
+
+
+<button
+                     class="plan-btn"
+                     id="planButton">
+
+                     Plan this trip ✨
+
+                 </button>
+            <button
+                     class="details-btn"
+                     id="detailsButton">
+                     View Places ✨
+                 </button>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+    
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
