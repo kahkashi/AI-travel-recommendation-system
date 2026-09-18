@@ -771,7 +771,7 @@ function showDestinations(vibe) {
         recommendationLoading.style.display = "block";
 
         try {
-            const response = await fetch("http://localhost:3000/api/recommendations", {
+            const response = await fetch("https://ai-travel-recommendation-system-racp.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ preferences }),
