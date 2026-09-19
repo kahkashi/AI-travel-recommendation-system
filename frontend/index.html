@@ -281,54 +281,46 @@
                   <div id="tripDetailsModal" class="modal-overlay" style="display:none;">
                       <div class="modal">
                           <button class="modal-close" id="modalClose">✕</button>
-                          <h2>Plan Your Trip ✨</h2>
-                          <p>Tell us a bit more about your trip so we can get the best recommendation.</p>
+                          <h2 id="modalTitle">Plan Your Trip ✨</h2>
+                          <p id="modalSubtitle">Tell us a bit more about your trip so we can get the best recommendation.</p>
 
                           <div class="modal-section">
                               <h4>Number of Days</h4>
-                              <div class="radio-group">
-                                  <label class="radio-option">
-                                      <input type="radio" name="duration" value="1-2 days" checked>
-                                      <span class="radio-label">1–2 days</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="duration" value="3–4 days">
-                                      <span class="radio-label">3–4 days</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="duration" value="5–7 days">
-                                      <span class="radio-label">5–7 days</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="duration" value="7+ days">
-                                      <span class="radio-label">7+ days</span>
-                                  </label>
-                              </div>
+                              <select id="numberOfDays" class="modal-select">
+                                  <option value="1">1 day</option>
+                                  <option value="2">2 days</option>
+                                  <option value="3" selected>3 days</option>
+                                  <option value="4">4 days</option>
+                                  <option value="5">5 days</option>
+                                  <option value="7">7 days</option>
+                                  <option value="10">10 days</option>
+                                  <option value="14">14 days</option>
+                              </select>
                           </div>
 
                           <div class="modal-section">
-                              <h4>Travel Type</h4>
-                              <div class="radio-group">
-                                  <label class="radio-option">
-                                      <input type="radio" name="travelType" value="Solo" checked>
-                                      <span class="radio-label">Solo</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="travelType" value="Couple">
-                                      <span class="radio-label">Couple</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="travelType" value="Family">
-                                      <span class="radio-label">Family</span>
-                                  </label>
-                                  <label class="radio-option">
-                                      <input type="radio" name="travelType" value="Friends">
-                                      <span class="radio-label">Friends</span>
-                                  </label>
-                              </div>
+                              <h4>Type of Travel</h4>
+                              <select id="travelType" class="modal-select">
+                                  <option value="Solo" selected>Solo</option>
+                                  <option value="Couple">Couple</option>
+                                  <option value="Friends">Friends</option>
+                                  <option value="Family">Family</option>
+                                  <option value="Group">Group</option>
+                              </select>
                           </div>
 
-                          <button class="plan-btn modal-plan-btn" id="modalPlanBtn">Generate My Plan ✨</button>
+                          <div class="modal-section">
+                              <h4>Budget</h4>
+                              <select id="budget" class="modal-select">
+                                  <option value="₹5,000">₹5,000</option>
+                                  <option value="₹8,000" selected>₹8,000</option>
+                                  <option value="₹10,000">₹10,000</option>
+                                  <option value="₹15,000">₹15,000</option>
+                                  <option value="₹20,000+">₹20,000+</option>
+                              </select>
+                          </div>
+
+                          <button class="modal-plan-btn" id="modalPlanBtn">✨ Plan My Trip</button>
                       </div>
                   </div>
 

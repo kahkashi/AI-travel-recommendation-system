@@ -27,18 +27,19 @@ app.get("/api/destinations", (req, res) => {
 
 app.post("/api/recommendations", async (req, res) => {
   try {
-    const { preferences } = req.body;
+    const { destination, vibe, budget, numberOfDays, travelType } = req.body;
 
-    if (!preferences) {
-      return res.status(400).json({ error: "preferences is required" });
+    if (!destination || !vibe || !budget || !numberOfDays || !travelType) {
+      return res.status(400).json({ error: "destination, vibe, budget, numberOfDays, and travelType are all required" });
     }
 
-    const recommendation = await getTravelRecommendation(preferences);
+    const recommendation = await getTravelRecommendation({ destination, vibe, budget, numberOfDays, travelType });
 
     res.json({ recommendation });
   } catch (error) {
     console.error("Recommendation error:", error.message);
-    res.status(500).json({ error: "Failed to generate recommendation" });
+    console.error("Full error details:", error);
+    res.status(500).json({ error: "Failed to generate recommendation - " + error.message });
   }
 });
 

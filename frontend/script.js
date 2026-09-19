@@ -730,76 +730,95 @@ function showDestinations(vibe) {
        PLAN TRIP BUTTON
     ================================================== */
 
-    planButton.addEventListener("click", async function () {
+planButton.addEventListener("click", function () {
 
-        if (!selectedDestination) {
+    if (!selectedDestination) {
+        return;
+    }
+
+    const modal = document.getElementById("tripDetailsModal");
+    const modalTitle = document.getElementById("modalTitle");
+    modalTitle.textContent = `Plan ${selectedDestination} ✨`;
+    modal.style.display = "flex";
+
+});
+
+document.getElementById("modalPlanBtn").addEventListener("click", async function () {
+
+    if (!selectedDestination) {
+        return;
+    }
+    const modal = document.getElementById("tripDetailsModal");
+if (modal) {
+    modal.style.display = "none";
+}
+
+    const activeCard = document.querySelector(".vibe-card.active");
+    const vibeName = activeCard ? activeCard.querySelector("h3").textContent : "";
+
+    const numberOfDays = document.getElementById("numberOfDays").value;
+    const travelType = document.getElementById("travelType").value;
+    const budget = document.getElementById("budget").value;
+
+    const recommendationSection = document.getElementById("recommendationSection");
+    const recommendationContent = document.getElementById("recommendationContent");
+    const recommendationLoading = document.getElementById("recommendationLoading");
+    const recommendationError = document.getElementById("recommendationError");
+
+    recommendationSection.style.display = "none";
+    recommendationError.style.display = "none";
+    recommendationLoading.style.display = "block";
+
+    try {
+        const response = await fetch("http://localhost:3000/api/recommendations", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                destination: selectedDestination,
+                vibe: vibeName,
+                budget: budget,
+                numberOfDays: parseInt(numberOfDays),
+                travelType: travelType,
+            }),
+        });
+
+        recommendationLoading.style.display = "none";
+
+        if (!response.ok) {
+            recommendationError.style.display = "block";
+            recommendationSection.style.display = "none";
             return;
         }
 
-        let activitiesStr = "";
-        for (const vibeKey in destinations) {
-            const vibeData = destinations[vibeKey];
-            const place = vibeData.places.find(p => p.name === selectedDestination);
-            if (place) {
-                activitiesStr = place.activities;
-                break;
-            }
-        }
-        const activityList = activitiesStr
-            ? activitiesStr.split("•").map(a => a.trim()).filter(Boolean)
-            : [];
-
-        const days = [];
-        for (let i = 0; i < 4; i++) {
-            const act = activityList[i] || "Explore the city";
-            days.push(`Day ${i + 1}: ${act}`);
+        const data = await response.json();
+        
+        // Close the planning modal
+        const modal = document.getElementById("tripDetailsModal");
+        if (modal) {
+            modal.style.display = "none";
         }
 
-        const planMessage = `🗓️ 4-Day Travel Plan for ${selectedDestination}\n\n` + days.join("\n") + "\n\nEnjoy your trip!";
+        // Show recommendations
+        recommendationSection.style.display = "block";
+        recommendationContent.innerHTML = DOMPurify.sanitize(marked.parse(data.recommendation));
+        
+        // Scroll to recommendations
+        recommendationSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-        const activeCard = document.querySelector(".vibe-card.active");
-        const vibeName = activeCard ? activeCard.querySelector("h3").textContent : "";
-        const preferences = `I want a ${vibeName.toLowerCase()} trip to ${selectedDestination} for 3 days with a medium budget`;
-
-        const recommendationSection = document.getElementById("recommendationSection");
-        const recommendationContent = document.getElementById("recommendationContent");
-        const recommendationLoading = document.getElementById("recommendationLoading");
-        const recommendationError = document.getElementById("recommendationError");
-
+    } catch (err) {
+        recommendationLoading.style.display = "none";
+        recommendationError.style.display = "block";
         recommendationSection.style.display = "none";
-        recommendationError.style.display = "none";
-        recommendationLoading.style.display = "block";
+    }
 
-        try {
-            const response = await fetch("http://localhost:3000/api/recommendations", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ preferences }),
-            });
+});
 
-            recommendationLoading.style.display = "none";
-
-            if (!response.ok) {
-                recommendationError.style.display = "block";
-                recommendationSection.style.display = "none";
-                return;
-            }
-
-            const data = await response.json();
-
-            const cleanHtml = DOMPurify.sanitize(marked.parse(data.recommendation));
-            recommendationContent.innerHTML = cleanHtml;
-            recommendationSection.style.display = "block";
-            recommendationError.style.display = "none";
-            recommendationSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-        } catch (err) {
-            recommendationLoading.style.display = "none";
-            recommendationError.style.display = "block";
-            recommendationSection.style.display = "none";
-        }
-
-    });
+document.getElementById("modalClose").addEventListener("click", function () {
+    document.getElementById("tripDetailsModal").style.display = "none";
+});
 
 
 
